@@ -1,6 +1,8 @@
 package forum.hub.controller;
 
 import forum.hub.controller.dto.SignInDto;
+import forum.hub.repository.MemberRepository;
+import forum.hub.service.MemberService;
 import forum.hub.service.login.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class SignInController {
 
     private final LoginService loginService;
+    private final MemberService memberService;
 
     @GetMapping("/add")
     public String addForm() {

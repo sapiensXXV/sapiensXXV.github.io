@@ -3,6 +3,7 @@ package forum.hub.entity;
 import forum.hub.entity.identifier.UserRole;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +15,8 @@ import java.util.List;
 @Getter
 public class Member {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     @Enumerated(value = EnumType.STRING)
@@ -23,8 +25,15 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Post> posts = new ArrayList<>();
 
-    private int age;
     private String name;
     private String email;
     private String passwordHash;
+
+    //생성자
+    @Builder
+    public Member(String name, String email, String passwordHash) {
+        this.name = name;
+        this.email = email;
+        this.passwordHash = passwordHash;
+    }
 }
