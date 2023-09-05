@@ -1,4 +1,4 @@
-package forum.hub.service;
+package forum.hub.service.member;
 
 import forum.hub.entity.Member;
 import forum.hub.repository.MemberRepository;

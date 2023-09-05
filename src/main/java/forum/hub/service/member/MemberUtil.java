@@ -1,4 +1,4 @@
-package forum.hub.service.login;
+package forum.hub.service.member;
 
 import forum.hub.service.exception.SHA256HashFailException;
 import org.springframework.stereotype.Service;
@@ -6,9 +6,8 @@ import org.springframework.stereotype.Service;
 import java.security.MessageDigest;
 
 @Service
-public class SessionLoginService implements LoginService{
+public class MemberUtil {
 
-    @Override
     public String hashPassword(String password) {
         //SHA-256 hash algorithm
         try {
