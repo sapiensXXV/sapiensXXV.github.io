@@ -24,6 +24,7 @@ public class Member {
     private List<Post> posts = new ArrayList<>();
 
     private int age;
+    private String name;
     private String email;
     private String passwordHash;
 }
