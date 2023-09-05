@@ -1,9 +1,11 @@
 package forum.hub.service.login;
 
 import forum.hub.service.exception.SHA256HashFailException;
+import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 
+@Service
 public class SessionLoginService implements LoginService{
 
     @Override
