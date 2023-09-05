@@ -1,7 +1,6 @@
 package forum.hub.controller;
 
-import forum.hub.controller.dto.SignInDto;
-import forum.hub.repository.MemberRepository;
+import forum.hub.controller.dto.SignInFormDto;
 import forum.hub.service.MemberService;
 import forum.hub.service.login.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,7 @@ public class SignInController {
     }
 
     @PostMapping("/add")
-    public String save(SignInDto signInDto) {
+    public String save(SignInFormDto signInDto) {
 
         log.info("username={}, email={}, password={}", signInDto.getUsername(), signInDto.getEmail(), signInDto.getPassword());
         String hashPassword = loginService.hashPassword(signInDto.getPassword());
