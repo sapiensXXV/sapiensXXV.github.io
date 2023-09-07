@@ -1,6 +1,6 @@
 package forum.hub.controller;
 
-import forum.hub.controller.dto.SignInFormDto;
+import forum.hub.controller.dto.SignUpFormDto;
 import forum.hub.service.member.MemberService;
 import forum.hub.service.member.MemberUtil;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class SignInController {
+public class SignUpController {
 
     private final MemberUtil memberUtil;
     private final MemberService memberService;
@@ -23,10 +23,10 @@ public class SignInController {
     }
 
     @PostMapping("/add")
-    public String save(SignInFormDto signInDto) {
+    public String save(SignUpFormDto signUpDto) {
 
-        log.info("username={}, email={}, password={}", signInDto.getUsername(), signInDto.getEmail(), signInDto.getPassword());
-        String hashPassword = memberUtil.hashPassword(signInDto.getPassword());
+        log.info("username={}, email={}, password={}", signUpDto.getUsername(), signUpDto.getEmail(), signUpDto.getPassword());
+        String hashPassword = memberUtil.hashPassword(signUpDto.getPassword());
         log.info("hash password={}", hashPassword);
 
         return "redirect:/";
