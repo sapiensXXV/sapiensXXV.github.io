@@ -1,5 +1,6 @@
 package forum.hub.entity;
 
+import forum.hub.dto.MemberDto;
 import forum.hub.entity.identifier.UserRole;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -35,5 +36,13 @@ public class Member {
         this.name = name;
         this.email = email;
         this.passwordHash = passwordHash;
+    }
+
+    public static MemberDto getMemberDto(String name, String email, String passwordHash) {
+        return MemberDto.builder()
+            .name(name)
+            .email(email)
+            .passwordHash(passwordHash)
+            .build();
     }
 }
