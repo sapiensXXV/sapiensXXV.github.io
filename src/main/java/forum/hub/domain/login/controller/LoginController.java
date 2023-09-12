@@ -34,7 +34,6 @@ public class LoginController {
     public String login(
         @ModelAttribute LoginFormDto form,
         HttpServletRequest request,
-        HttpServletResponse response,
         @RequestParam(defaultValue = "/") String redirectURL,
         Model model
     ) {
