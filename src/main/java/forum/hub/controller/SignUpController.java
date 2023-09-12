@@ -1,6 +1,7 @@
 package forum.hub.controller;
 
 import forum.hub.controller.dto.SignUpFormDto;
+import forum.hub.entity.Member;
 import forum.hub.service.member.MemberService;
 import forum.hub.service.member.MemberUtil;
 import lombok.RequiredArgsConstructor;
@@ -23,11 +24,9 @@ public class SignUpController {
     }
 
     @PostMapping("/add")
-    public String save(SignUpFormDto signUpDto) {
-
-        log.info("username={}, email={}, password={}", signUpDto.getUsername(), signUpDto.getEmail(), signUpDto.getPassword());
-        String hashPassword = memberUtil.hashPassword(signUpDto.getPassword());
-        log.info("hash password={}", hashPassword);
+    public String save(SignUpFormDto dto) {
+        String hashPassword = memberUtil.hashPassword(dto.getPassword());
+        memberService.save(new Member(dto.getUsername(), dto.getEmail(), memberUtil.hashPassword(dto.getPassword())));
 
         return "redirect:/";
     }
