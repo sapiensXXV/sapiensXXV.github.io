@@ -22,8 +22,8 @@ public class MemberService {
     }
 
     public Member findByPasswordHash(String passwordHash) {
-        Optional<Member> byPasswordHash = memberRepository.findByPasswordHash(passwordHash);
-        return byPasswordHash.orElseThrow(MemberNotFoundException::new);
+        Optional<Member> findMember = memberRepository.findByPasswordHash(passwordHash);
+        return findMember.orElseThrow(MemberNotFoundException::new);
     }
 
     @Transactional
