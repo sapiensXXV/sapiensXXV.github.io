@@ -55,6 +55,10 @@ menu:
     url:               /docs/
   - title:             About
     url:               /about/
+  - title:             Develop
+    url:               /develop
+  - title:             Trouble Shooting
+    url:               /trouble
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
