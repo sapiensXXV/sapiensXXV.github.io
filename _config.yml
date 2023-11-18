@@ -56,9 +56,9 @@ menu:
   - title:             About
     url:               /about/
   - title:             Develop
-    url:               /posts/develop/
+    url:               /my_posts/develop/
   - title:             Trouble Shooting
-    url:               /posts/trouble/
+    url:               /my_posts/trouble/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
