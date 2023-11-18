@@ -5,5 +5,5 @@ slug: trouble
 menu: true
 order: 2
 description: >
-  트러블슈팅
+  트러블 슈팅
 ---
