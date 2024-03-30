@@ -166,7 +166,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 ### Default (with caption)
 
-![Desktop View](/posts/20190808/mockup.png){: width="972" height="589" }
+![Desktop View](./img/20240329/image.png){: width="972" height="589" }
 _Full screen width and center alignment_
 
 ### Left aligned
@@ -192,7 +192,7 @@ The image below will toggle dark/light mode based on theme preference, notice it
 
 ## Video
 
-{% include embed/youtube.html id='Balreaj8Yqs' %}
+{% include embed/youtube.html id='DKqfuiqZ7WU' %}
 
 ## Reverse Footnote
 
