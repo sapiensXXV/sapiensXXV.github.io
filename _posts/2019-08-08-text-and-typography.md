@@ -164,8 +164,6 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 ## Images
 
-<img src="https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/e81960b4-0382-4b27-bf19-69abcdad24a0">
-
 ### Default (with caption)
 
 ![image](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/e81960b4-0382-4b27-bf19-69abcdad24a0)
