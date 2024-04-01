@@ -60,7 +60,6 @@ Quisque egestas convallis ipsum, ut sollicitudin risus tincidunt a. Maecenas int
 
 Sun
 : the star around which the earth orbits
-- ㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇ
 
 Moon
 : the natural satellite of the earth, visible by reflected light from the sun
