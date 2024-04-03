@@ -11,7 +11,7 @@ tags: [데이터베이스, DBCP]
 
 ### 문제점
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/605c5cd3-a17a-41d1-824d-915da3831061/d12ac9b6-a451-40f7-a730-5d114715df2d/Untitled.png)
+![Untitled](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/79862af3-1f5f-425f-a194-b6c95b14e531)
 
 API를 통해서 서버가 요청을 받아 처리를 하다가 DB에 접근해 데이터를 조회할 일이 생기면 쿼리요청을 DB서버로 보낸다. DB서버는 데이터를 찾아서 처리한다음, 쿼리 응답을 보내준다. 쿼리 응답을 받은 백엔드 서버는 필요한 처리를 한 다음 응답을 보내주는 것이다.
 
@@ -67,10 +67,8 @@ MySQL에는 중요한 두가지 파라미터가 있다.
     - Pool이 가질 수 있는 최대 커넥션 수
     - idle과 active(in-use) 커넥션을 합쳐서 최대 수
 
-<aside>
-💡 idle connection 수가 `minimumIdle`보다 작고, 전체 connection 수도 `maximumPoolSize`보다 작다면 신속하게 추가로 connection을 만든다. maximumPoolSize가 minimumIdle보다 우선순위가 높다.
-
-</aside>
+> idle connection 수가 `minimumIdle`보다 작고, 전체 connection 수도 `maximumPoolSize`보다 작다면 신속하게 추가로 connection을 만든다. maximumPoolSize가 minimumIdle보다 우선순위가 높다.
+{: .prompt-info }
 
 <aside>
 💡 minimumIdle의 기본값은 maximumPoolSize의 값과 동일하도록 하는 것이고, 이 값을 사용하도록 권장된다. 두 파라미터의 값이 같다는 것은 Pool Size가 고정이라는 것을 의미한다. minimumIdle의 값을 maximumPoolSize 보다 작게하면 커넥션을 새롭게 만드는 상황이 생기고 이 과정에 시간적인 비용이 들어가기 때문이다.
@@ -84,10 +82,8 @@ MySQL에는 중요한 두가지 파라미터가 있다.
         - 2~3초 정도 짧게 설정하라고 권장된다.
         - DB의 wait_time과 DBCP의 maxLifetime에 차이가 없으면 아슬아슬하게 커넥션이 폐기될 수 있기 때문
 
-<aside>
-💡 Pool 로 반환되지 않으면 maxLifetime은 동작하지 않는다.
-
-</aside>
+> Pool 로 반환되지 않으면 maxLifetime은 동작하지 않는다.
+{: .prompt-info }
 
 - connectionTimeout
     - Pool에서 커넥션을 받기 위한 대기시간
@@ -130,7 +126,5 @@ MySQL에는 중요한 두가지 파라미터가 있다.
         - DB의 max_connections 를 넘지 않도록 maximumPoolSize를 설정했는데도 여유가 있다면 이제는 max_connections를 올린다. 이러한 과정을 반복하며 적절한 커넥션 수를 찾아간다.
             - 사용할 백엔드 서버 수를 고려하여 DBCP의 max pool size를 결정해야한다.
 
-<aside>
-💡 이런식으로 종합적으로 고려하면서 적절한 커넥션 수를 설정할 수 있다.
-
-</aside>
+> 이런식으로 종합적으로 고려하면서 적절한 커넥션 수를 설정할 수 있다.
+{: .prompt-info }
