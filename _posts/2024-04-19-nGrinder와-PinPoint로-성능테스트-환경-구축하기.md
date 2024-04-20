@@ -48,11 +48,11 @@ services:
 ### 구축 흐름
 핀포인트를 사용하기 위해서는 크게 Controller와 Agent를 설치해야합니다. HBase등 과거이력을 보기 위해서 추출한 정보를 저장해두는 데이터베이스도 설치가 필요하지만 Docker Compose를 사용해서 설치한다면 크게 신경쓸 필요는 없습니다.
 
-![핀포인트 구조도](./img/20240419/핀포인트%20구조도.png)
+![핀포인트 구조도](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/6f04c7d3-d722-4c62-8bc8-9000e3dc8fee)
 
 핀포인트 서버에 컨트롤러를 설치하고 운영 서버에서 웹 애플리케이션과 핀포인트 에이전트를 함께 실행시키면 됩니다.
 
-> 핀포인트 서버는 메모리 용량이 `16GB` 이상인 환경에서 구축할 것을 권장하고 있습니다. 핀포인트가 띄워질 때 사용되는 메모리가 `13~15GB`정도이기 때문입니다. 필자는 처음에 `1코어, 2GB 메모리 환경`에서 핀포인트 서버를 구축했다가 머신이 완전히 멈추어버리는 문제를 겪었다.
+> 핀포인트 서버는 메모리 용량이 `16GB` 이상인 환경에서 구축할 것을 권장하고 있습니다. 핀포인트가 띄워질 때 사용되는 메모리가 `13~15GB`정도이기 때문입니다. 필자는 처음에 `1코어, 2GB 메모리 환경`에서 핀포인트 서버를 구축했다가 머신이 완전히 멈추어버리는 문제를 겪었습니다..
 {: .prompt-warning }
 
 핀포인트 서버는 따로 VM을 구성하지 않고 로컬에서 실행하기로 하였다.
@@ -79,11 +79,11 @@ docker-compose -f docker-compose.yml -f docker-compose-metric.yml up -d
 이후 `http://{핀포인트 서버 도메인/IP}:8080`로 접속하면 핀포인트에 접속할 수 있다. 나는 로컬에서 구축했기 때문에 [http://localhost:8080](http://localhost:8080)로 접속했다. 
 
 도메인에 접속해보면 에이전트 테스트를 위한 QuickStart앱으로 에이전트 테스트를 해볼 수 있다.
-![핀포인트 localhost:8080](./img/20240419/핀포인트-localhost-8080.png)
+![핀포인트 localhost:8080](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/1b62d353-13c5-46c0-bf81-5c1ebac6ee8d)
 
 
 `http://{핀포인트 서버 도메인/IP}:8085`로 접속해서 quickapp에 대한 요청을 보내 테스트를 진행해볼 수 있다.
-![핀포인트 localhost:8085](./img/20240419/핀포인트-localhost-8085.png)
+![핀포인트 localhost:8085](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/a4403ac3-2977-4d82-8a28-d37e4855f1bf)
 
 QuickStart앱은 에이전트 테스트를 위한 앱이기 때문에 운영환경에서는 제외해야한다. <br>
 docker-compose.yml 파일에서 services 목록 중 
