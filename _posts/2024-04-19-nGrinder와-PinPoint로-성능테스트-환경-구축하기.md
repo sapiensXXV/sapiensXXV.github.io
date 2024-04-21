@@ -135,6 +135,7 @@ VOLUME [ "/tmp" ]
 - [핀포인트 Docker 문서](https://github.com/pinpoint-apm/pinpoint-docker)
 - [핀포인트 Agent 설치 문서](https://pinpoint-apm.github.io/pinpoint/installation.html#5-pinpoint-agent)
 - [핀포인트 아키텍쳐 Overview](https://pinpoint-apm.github.io/pinpoint/overview.html#architecture)
+- [도커로 핀포인트를 띄우는 법(블로그)](https://suho0303.tistory.com/52)
 
 ## 트러블 슈팅
 ### Error while fetching files from SVN for admin
@@ -148,3 +149,15 @@ VOLUME [ "/tmp" ]
 - JDK 버전을 11로 다운그레이드 시켜 해결하였다.
 
 PINPOINT jar파일을 다운받고 실행하는 과정에서 발생한 에러였다. 하지만 결국에는 도커를 사용해서 핀포인트를 설치했기에 고민할 필요가 없어졌다.
+
+### Failed to command stream, cause=UNAVAILABLE
+
+에러 로그는 다음과 같다.
+```
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+    at io.grpc.Status.asRuntimeException(Status.java:535) ~[grpc-api-1.49.2.jar:1.49.2]
+    ...
+    at java.lang.Thread.run(Thread.java:833) ~[?:?]
+Caused by: io.netty.channel.ConnectTimeoutException: connection timed out: /{핀포인트 서버 주소}:9991
+    at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe$2.run...
+```
