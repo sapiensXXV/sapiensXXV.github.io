@@ -37,3 +37,8 @@ docker run ... --env-file ./.env ...
 Dockerfile과 Docker Compose내에서 파일에 작성한 환경변수가 필요하다면 `${...} 내부에 정의해둔 환경변수의 key값을 작성하면 됩니다.
 
 도커 컴포즈를 이용해서 빌드할 때도 `docker build`와 마찬가지로 --env-file 옵션을 사용하면 됩니다. 물론 이것도 해당 옵션을 작성하지 않으면 가장 `Dockerfile`, `docker-compose.yml`이 있는 상위폴더의 `.env` 파일을 사용합니다. 
+
+
+## Reference
+- [Docker Compose env_file 속성 문서](https://docs.docker.com/compose/environment-variables/set-environment-variables/#use-the-env_file-attribute)
+- [**[Stack overflow]** Why do I need to declare env_file explicitely in docker-compose.yml?](https://stackoverflow.com/questions/58047984/why-do-i-need-to-declare-env-file-explicitely-in-docker-compose-yml)
