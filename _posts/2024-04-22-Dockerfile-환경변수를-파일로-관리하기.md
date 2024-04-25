@@ -3,8 +3,8 @@ title: Dockerfile 환경변수를 파일로 관리하기
 date: 2024-04-22 18:00:00 +09:00
 description: >-
     Dockerfile에 필요한 환경변수를 파일로 관리해 보안을 유지하는 방법에 대해서 설명합니다.
-categories: [환경설정, 성능 테스트, 모니터링]
-tags: [성능 테스트, 부하 테스트]
+categories: [도커]
+tags: [도커]
 ---
 
 ## 왜 파일로 환경변수를 관리하게 되었는가?
