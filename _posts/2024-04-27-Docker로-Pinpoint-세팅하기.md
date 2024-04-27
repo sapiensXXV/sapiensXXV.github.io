@@ -2,7 +2,7 @@
 title: Docker로 Pinpoint 세팅하기
 date: 2024-04-27 18:00:00 +09:00
 description: >-
-    애플리케이션 문제 원인에 대해 파악하는 방법을 알아봅니다.
+    Docker를 사용해서 Pinpoint 모니터링 환경을 세팅하는 방법에 대해서 알아봅니다.
 categories: [성능 테스트, 환경설정]
 tags: [성능 테스트, 스트레스 테스트, 테스트 도구]
 ---
@@ -101,7 +101,7 @@ app.jar
 - 빌드 시 agent 내용을 함께 실행한다.
 
 ### 핀포인트 접속 확인
-서버에서 핀포인트에 프로파일 데이터를 보내고, pinpoint-web에서 이를 시각화 해서 보여준다.
+웹서버에서 핀포인트 서버에 프로파일 데이터를 보내고, pinpoint-web에서 이를 시각화 해서 보여준다.
 
 ![pinpoint 실행결과 1](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/bd41c91b-3997-46c7-87dd-2c2c337fe97a)
 ![pinpoint 실행결과 2](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/b4ed3209-af0a-4398-902b-8d38c6a07ea5)
@@ -129,5 +129,11 @@ jarfile 경로를 찾을 수 없다며 `javaagent:` 부분을 함께 보여줄 �
 
 나는 핀포인트 서버를 아마존 EC2 인스턴스나 GCP VM인스턴스에 설치하지 않고 로컬에 설치했기 때문에 외부에서 게이트웨이 주소로 요청이 오면 핀포인트 서버가 설치된 로컬 컴퓨터의 IP주소로 보내주는 포트포워딩 설정이 필요했다. 
 
-KT 공유기를 사용하고 있기 때문에 KT 공유기 설정으로 들어가서 포트포워딩 설정을 해주어 해결했다. [KT 공유기 포트포워딩 설정 방법]()은 다른 글에서 다루도록 하겠다.
+KT 공유기를 사용하고 있기 때문에 KT 공유기 설정으로 들어가서 포트포워딩 설정을 해주어 해결했다. [KT 공유기 포트포워딩 설정 방법](https://mynameisjaehoon.github.io/posts/KT%EA%B3%B5%EC%9C%A0%EA%B8%B0-%ED%8F%AC%ED%8A%B8%ED%8F%AC%EC%9B%8C%EB%94%A9-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/)은 다른 글에서 다루도록 하겠다.
 
+
+## Reference
+- [**[Velog]** Pinpoint Docker 설치](https://velog.io/@csh0034/APM-Pinpoint-Docker-%EC%84%A4%EC%B9%98)
+- [**[TISTORY]** Docker로 Pinpoint 5분만에 구성하기](https://peterica.tistory.com/398)
+- [**[TISTORY]** KT 기가 와이파이 공유기 접속 방법 및 초기 패스워드 변경 방법](https://sharemania.tistory.com/entry/KT-%EA%B8%B0%EA%B0%80-%EC%99%80%EC%9D%B4%ED%8C%8C%EC%9D%B4-%EA%B3%B5%EC%9C%A0%EA%B8%B0-%EC%A0%91%EC%86%8D-%EB%B0%A9%EB%B2%95-%EB%B0%8F-%EC%B4%88%EA%B8%B0-%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C-%EB%B3%80%EA%B2%BD-%EB%B0%A9%EB%B2%95)
+- [**[StackOverflow]** What causes "Unable to access jarfile" error?](https://stackoverflow.com/questions/11943948/what-causes-unable-to-access-jarfile-error)
