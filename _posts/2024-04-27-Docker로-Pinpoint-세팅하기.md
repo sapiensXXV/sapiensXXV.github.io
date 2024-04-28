@@ -115,7 +115,7 @@ app.jar
 
 jarfile 경로를 찾을 수 없다며 `javaagent:` 부분을 함께 보여줄 때 눈치챘어야 했다.
 
-### connection timed out /<IP주소>:<포트>
+### connection timed out / {IP주소}:{포트}
 메세지 그대로 collector와 통신할 수 없기 때문에 발생하는 에러이다. 
 
 다음 두가지 문제 때문에 발생한 에러였다.
