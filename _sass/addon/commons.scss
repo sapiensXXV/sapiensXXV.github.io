@@ -3,6 +3,16 @@
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.1/ChosunSm.woff');
 }
 
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans KR';
+  src: url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
+}
+
 /* The common styles */
 
 html {
@@ -408,8 +418,8 @@ main {
 }
 
 .content {
-  font-family: 'ChosunSm', serif;
-  font-weight: normal;
+  font-family: 'Noto Sans KR', serif;
+  font-weight: 500;
   font-style: normal;
   font-size: 1rem;
   margin-top: 2rem;
@@ -1485,8 +1495,8 @@ search {
   }
 
   .content {
-    font-family: 'ChosunSm', serif;
-    font-weight: normal;
+    font-family: 'Noto Sans KR', serif;
+    font-weight: 500;
     font-style: normal;
     font-size: 1.00rem;
   }

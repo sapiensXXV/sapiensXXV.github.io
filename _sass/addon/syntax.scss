@@ -5,6 +5,16 @@
 @import 'colors/syntax-light';
 @import 'colors/syntax-dark';
 
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans KR';
+  src: url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
+}
+
 html {
   @media (prefers-color-scheme: light) {
     &:not([data-mode]),
@@ -59,6 +69,7 @@ html {
 
   pre {
     margin-bottom: 0;
+    // font-family: IBM Plex Sans KR;
     font-size: $code-font-size;
     line-height: 1.4rem;
     word-wrap: normal; /* Fixed Safari overflow-x */
@@ -102,6 +113,9 @@ code {
 
   &.highlighter-rouge {
     font-size: $code-font-size;
+    font-family: IBM Plex Sans KR;
+    font-weight: 600;
+    color: rgb(235, 87, 87);
     padding: 3px 5px;
     word-break: break-word;
     border-radius: 4px;
