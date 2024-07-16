@@ -13,6 +13,13 @@
   src: url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
 }
 
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* The common styles */
 
 html {
@@ -418,8 +425,7 @@ main {
 }
 
 .content {
-  font-family: 'Noto Sans KR', serif;
-  font-weight: 500;
+  font-family: 'Pretendard-Regular', serif;
   font-style: normal;
   font-size: 1rem;
   margin-top: 2rem;
@@ -1495,10 +1501,9 @@ search {
   }
 
   .content {
-    font-family: 'Noto Sans KR', serif;
-    font-weight: 500;
+    font-family: 'Pretendard-Regular', serif;
     font-style: normal;
-    font-size: 1.00rem;
+    font-size: 0.98rem;
   }
 }
 

@@ -12,6 +12,13 @@
   src: url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
 }
 
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
 %btn-post-nav {
   width: 50%;
   position: relative;
@@ -29,7 +36,7 @@ header {
     @extend %heading;
 
     font-size: 1.125rem;
-    font-family: Noto Sans KR;
+    font-family: Pretendard-Regular;
     font-weight: 400;
     line-height: 1.6;
   }
