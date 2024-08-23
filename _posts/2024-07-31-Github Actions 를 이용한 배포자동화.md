@@ -15,7 +15,7 @@ tags: [Github Actions, 배포]
 `main` 브랜치로 backend 디렉토리 하위의 파일이 커밋, 풀 리퀘스트가 발생했을 때 동작하는 워크플로우이다.
 - 빌드
   - Gradle로 애플리케이션을 빌드한다.
-  - 빌드된 결과(.jar)를 아티팩트 파일로 업로드한다.
+  - 빌드된 결과(`.jar`)를 아티팩트 파일로 업로드한다.
 - 도커 이미지 빌드, 도커허브에 푸시
   - 빌드 단계에서 저장해둔 .jar 아티팩트 파일을 다운로드한다.
   - 도커 이미지를 빌드한다.
@@ -24,6 +24,11 @@ tags: [Github Actions, 배포]
   - 배포할 서버에 SSH로 접속한다.
   - 도커 컴포즈 설정정보에 사용되는 .env 파일을 가상머신에 생성한다. 
   - 도커 컴포즈 설정파일을 사용해 도커 허브로부터 이미지를 내려받고 실행한다.
+- 결과 안내
+  - 배포 결과를 슬랙 메세지로 전달한다.
+
+### 환경 변수 관리
+
 
 ## 부딪힌 문제들
 
@@ -152,102 +157,8 @@ services:
 
 따라서 도커 컴포즈 파일에서 설정한 context 정보가 Dockerfile의 컨텍스트가 된다는 점을 꼭 명심하고 작성하도록 하자.
 
-### 가상머신에서의 환경변수 활용
 
-내가 원했던 것은 데이터베이스 `url`, `username`, `password`, `private key`과 같은 민감한 정보들은 외부에 일절 노출시키지 않고 github actions를 통해 테스트-빌드-배포 까지 자동화되는 것이였다. 그러다 보니 환경변수 관리측면에서 많은 시행착오를 겪었다.
 
-환경변수가 필요한 곳을 살펴보면
-
-1. 스프링 부트 애플리케이션을 빌드할 때
-2. 도커 컴포즈로 도커 이미지를 빌드할 때
-3. 가상머신에서 도커 이미지를 실행할 때
-
-순서대로 설명하면, 스프링 부트 애플리케이션의 데이터소스 정보를 환경변수값으로 등록해놓았기 때문에 필요하다. 2번의 경우는 정확히말하면 환경변수가 필요한 것이 아니라 서비스의 env_file 속성으로 .env 파일의 이름을 등록해놓았기 때문에 .env 파일이 필요하다. 3번의 경우에는 .env 파일에 있는 환경변수 정보를 컨테이너의 환경변수로 등록하기 위해 필요하다.
-
-처음에는 도커 컴포즈 파일에 `env_file` 속성이 아니라 `environment` 속성으로 환경변수를 직접등록하여 사용하였다. 환경변수가 이미지에 등록되면 이미지를 내려받은 곳에서도 동일하게 환경변수를 사용할 수 있을 것이라 생각했기 때문이다. 당시 도커 컴포즈 설정파일은 다음과 같았다.
-```yaml
-services:
-  back:
-    platform: linux/amd64
-    build:
-      context: ../..
-      dockerfile: backend/docker/Dockerfile
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
-      - DATABASE_USERNAME=${DATABASE_USERNAME}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-    image: sjhn/gongnomok-backend:prod-1.2.3
-    restart: always
-    ports:
-      - 8080:8080
-```
-워크플로우 에서는 레포지토리에 데이터베이스의 url, username, password 정보가 secrets에 저장되어 있었고, 그 값들을 이용해서
-- DATABASE_URL
-- DATABASE_USERNAME
-- DATABASE_PASSWORD
-
-라는 이름으로 환경변수를 만들었기 때문에 이러한 이름들을 인식할 수 있었다. 하지만 가상머신에서 똑같은 docker-compose 설정파일을 이용해서 이미지를 pull 받았을 때, 해당 가상머신에 환경변수가 등록되어 있지 않다면 문자열 그대로 `${DATABASE_URL}` 로 인식해버리기 때문에 원하는 대로 동작하지 않는다.
-
-따라서 `environment`를 사용해서 환경변수를 등록하는 대신에 `env_file` 을 사용해서 환경변수 파일을 등록하는 방법을 사용하였다. 
-
-```yaml
-services:
-  back:
-    platform: linux/amd64
-    build:
-      context: ../..
-      dockerfile: backend/docker/Dockerfile
-    env_file:
-      - .env # 환경변수 파일, 도커 컴포즈 파일과 동일한 디렉토리에 위치한다.
-    image: sjhn/gongnomok-backend:prod-1.2.3
-    restart: always
-    ports:
-      - 8080:8080
-```
-
-SSH로 가상머신에 접속한 이후 `docker-compose.yml` 파일이 있는 곳에 환경변수 파일을 만들어 주면된다. github Actions에 작성된 내용은 다음과 같다.
-
-```yaml
-deploy:
-  needs: [ build, docker-image ]
-  name: 배포
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v4
-    - name: SSH 접속 후 배포
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
-        # password: ${{ secrets.SERVER_PASSWORD }}
-        port: ${{ secrets.SERVER_SSH_PORT }}
-        private-key: 
-        script: |
-          whoami
-          cd gongnomok-simulator
-          git pull
-          
-          echo "DATABASE_URL=${{ env.DATABASE_URL }}" > ./backend/docker/.env
-          echo "DATABASE_USERNAME=${{ env.DATABASE_USERNAME }}" >> ./backend/docker/.env
-          echo "DATABASE_PASSWORD=${{ env.DATABASE_PASSWORD }}" >> ./backend/docker/.env
-
-          sudo docker compose -f ./backend/docker/docker-compose.yml pull
-          sudo docker compose -f ./backend/docker/docker-compose.yml down
-          sudo docker compose -f ./backend/docker/docker-compose.yml up -d
-```
-
-deploy 작업(job)에서 스크립트를 보면 환경변수 정보들을 담은 .env 파일을 만들고 있다. docker-compose.yml 파일과 동일한 위치에 만들어준 것을 확인할 수 있다.
-
-## 환경변수 관리법
-- 로컬
-  1. 인텔리제이 IDE를 사용한다면 환경변수를 추가한채로 실행
-  2. 프로젝트의 루트에 환경변수 파일을 두고 spring.config.import 속성으로 포함
-- 레포지토리
-  - 민감한 정보가 담긴 환경변수라면 레포지토리에 저장되지 않도록 한다.
-  - Github Actions에서 사용해야한다면 레포지토리 Secrets를 활용하자
-- 도커 이미지
-  - 도커 컴포즈에 환경변수 파일 설정
 
 ## 참조
 - [블로그 - GithubActions](https://www.daleseo.com/?tag=GitHubActions)
