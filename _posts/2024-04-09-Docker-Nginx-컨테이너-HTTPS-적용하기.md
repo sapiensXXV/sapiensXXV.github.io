@@ -46,6 +46,9 @@ COPY ./secret/options-ssl-nginx.conf /etc/secret/
 COPY ./secret/privkey.pem /etc/secret/
 ```
 
+> 위 스크립트처럼 도커 파일에 직접 인증 키를 포함하는 것은 심각한 보안 이슈가 된다. 공부할 당시에는 몰랐지만 이제는 절대 저런방식으로 인증키를 전달하지 않는다. 보안과 관련된 정보를 직접적으로 담지 말자.
+{: .prompt-danger }
+
 `RUN mkdir /etc/secret`
 - https를 적용하는데 필요한 인증파일이 위치할 폴더를 만든다.
 
