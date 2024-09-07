@@ -17,7 +17,7 @@ timezone: Asia/Seoul # 타임존 한국에 사니까 Asia/Seoul 을 적어주면
 title: >
   ~ >_
 
-tagline: 조용한 관종 # it will display as the sub-title
+tagline: 평생 공부하고싶은 사람 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   여러가지 생각나는 대로 적습니다.
