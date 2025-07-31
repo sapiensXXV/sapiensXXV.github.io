@@ -14,54 +14,54 @@ tags: [서비스, Spring Data, MongoDB, 추상클래스, Converter]
 
 ```mermaid
 classDiagram
-    Question <|-- ImageMcqQuestion
-    Question <|-- ImageSubQuestion
-    Question <|-- AudioMcqQuestion
-    Question <|-- AudioSubQuestion
-    Question <|-- BinaryChoiceQuestion
-    ImageMcqQuestion --> TextMcqChoice
-    AudioMcqQuestion --> TextMcqChoice
-    BinaryChoiceQuestion --> BinaryChoiceItem
+  Question <|-- ImageMcqQuestion
+  Question <|-- ImageSubQuestion
+  Question <|-- AudioMcqQuestion
+  Question <|-- AudioSubQuestion
+  Question <|-- BinaryChoiceQuestion
+  ImageMcqQuestion --> TextMcqChoice
+  AudioMcqQuestion --> TextMcqChoice
+  BinaryChoiceQuestion --> BinaryChoiceItem
 
-    class Question {
-        <<abstract>>
-        -String questionId
-        -int tryCount
-        -int correctCount
-        +addTryCount()
-        +addCorrectCount()
-        +reflectQuizResult(QuestionResultRequest)*
-    }
+  class Question {
+    <<abstract>>
+    -String questionId
+    -int tryCount
+    -int correctCount
+    +addTryCount()
+    +addCorrectCount()
+    +reflectQuizResult(QuestionResultRequest)*
+  }
 
-    class ImageMcqQuestion {
-        -String imageUrl
-        -List~TextMcqChoice~ choices
-        +reflectQuizResult(QuestionResultRequest)
-    }
+  class ImageMcqQuestion {
+    -String imageUrl
+    -List~TextMcqChoice~ choices
+    +reflectQuizResult(QuestionResultRequest)
+  }
 
-    class ImageSubQuestion {
-        -String imageUrl
-        -List~String~ answers
-        +reflectQuizResult(QuestionResultRequest)
-    }
+  class ImageSubQuestion {
+    -String imageUrl
+    -List~String~ answers
+    +reflectQuizResult(QuestionResultRequest)
+  }
 
-    class AudioMcqQuestion {
-        -String audioUrl
-        -List~TextMcqChoice~ choices
-        +reflectQuizResult(QuestionResultRequest)
-    }
+  class AudioMcqQuestion {
+    -String audioUrl
+    -List~TextMcqChoice~ choices
+    +reflectQuizResult(QuestionResultRequest)
+  }
 
-    class AudioSubQuestion {
-        -String audioUrl
-        -List~String~ answers
-        +reflectQuizResult(QuestionResultRequest)
-    }
+  class AudioSubQuestion {
+    -String audioUrl
+    -List~String~ answers
+    +reflectQuizResult(QuestionResultRequest)
+  }
 
-    class BinaryChoiceQuestion {
-        -BinaryChoiceItem first
-        -BinaryChoiceItem second
-        +reflectQuizResult(QuestionResultRequest)
-    }
+  class BinaryChoiceQuestion {
+    -BinaryChoiceItem first
+    -BinaryChoiceItem second
+    +reflectQuizResult(QuestionResultRequest)
+  }
 ```
 
 그러다보니 자연스럽게 Quiz 도큐먼트는 다음과 같은 타입의 리스트를 가지게 되었습니다.
