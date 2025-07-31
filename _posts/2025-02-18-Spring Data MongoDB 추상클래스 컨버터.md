@@ -267,5 +267,6 @@ Caused by: java.net.ConnectException: Connection refused
 ```
 
 해당 설정을 적용하고 `ConnectionException`이 해결되었습니다.
+
 # 참고
 - [공식문서 - Custom Conversions :: Spring Data MongoDB](https://docs.spring.io/spring-data/mongodb/reference/mongodb/mapping/custom-conversions.html#page-title)
