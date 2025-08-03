@@ -13,55 +13,55 @@ tags: [서비스, Spring Data, MongoDB, 추상클래스, Converter]
 비즈니스 로직상 퀴즈의 유형은 이미지-주관식, 이미지-객관식, 오디오-주관식 등 여러가지가 있습니다. 퀴즈 도큐먼트 객체에 여러 유형의 문제를 매핑하기 위해서 문제를 표현하는 추상클래스를 두고 각 유형의 문제를 표현하는 구체클래스가 그를 상속하는 등 다형성을 최대한 활용하려고 노력했습니다.
 
 ```mermaid
-classDiagram
-  Question <|-- ImageMcqQuestion
-  Question <|-- ImageSubQuestion
-  Question <|-- AudioMcqQuestion
-  Question <|-- AudioSubQuestion
-  Question <|-- BinaryChoiceQuestion
-  ImageMcqQuestion --> TextMcqChoice
-  AudioMcqQuestion --> TextMcqChoice
-  BinaryChoiceQuestion --> BinaryChoiceItem
+  classDiagram
+    Question <|-- ImageMcqQuestion
+    Question <|-- ImageSubQuestion
+    Question <|-- AudioMcqQuestion
+    Question <|-- AudioSubQuestion
+    Question <|-- BinaryChoiceQuestion
+    ImageMcqQuestion --> TextMcqChoice
+    AudioMcqQuestion --> TextMcqChoice
+    BinaryChoiceQuestion --> BinaryChoiceItem
 
-  class Question {
-    <<abstract>>
-    -String questionId
-    -int tryCount
-    -int correctCount
-    +addTryCount()
-    +addCorrectCount()
-    +reflectQuizResult(QuestionResultRequest)*
-  }
+    class Question {
+      <<abstract>>
+      -String questionId
+      -int tryCount
+      -int correctCount
+      +addTryCount()
+      +addCorrectCount()
+      +reflectQuizResult(QuestionResultRequest)*
+    }
 
-  class ImageMcqQuestion {
-    -String imageUrl
-    -List~TextMcqChoice~ choices
-    +reflectQuizResult(QuestionResultRequest)
-  }
+    class ImageMcqQuestion {
+      -String imageUrl
+      -List~TextMcqChoice~ choices
+      +reflectQuizResult(QuestionResultRequest)
+    }
 
-  class ImageSubQuestion {
-    -String imageUrl
-    -List~String~ answers
-    +reflectQuizResult(QuestionResultRequest)
-  }
+    class ImageSubQuestion {
+      -String imageUrl
+      -List~String~ answers
+      +reflectQuizResult(QuestionResultRequest)
+    }
 
-  class AudioMcqQuestion {
-    -String audioUrl
-    -List~TextMcqChoice~ choices
-    +reflectQuizResult(QuestionResultRequest)
-  }
+    class AudioMcqQuestion {
+      -String audioUrl
+      -List~TextMcqChoice~ choices
+      +reflectQuizResult(QuestionResultRequest)
+    }
 
-  class AudioSubQuestion {
-    -String audioUrl
-    -List~String~ answers
-    +reflectQuizResult(QuestionResultRequest)
-  }
+    class AudioSubQuestion {
+      -String audioUrl
+      -List~String~ answers
+      +reflectQuizResult(QuestionResultRequest)
+    }
 
-  class BinaryChoiceQuestion {
-    -BinaryChoiceItem first
-    -BinaryChoiceItem second
-    +reflectQuizResult(QuestionResultRequest)
-  }
+    class BinaryChoiceQuestion {
+      -BinaryChoiceItem first
+      -BinaryChoiceItem second
+      +reflectQuizResult(QuestionResultRequest)
+    }
 ```
 
 그러다보니 자연스럽게 Quiz 도큐먼트는 다음과 같은 타입의 리스트를 가지게 되었습니다.
