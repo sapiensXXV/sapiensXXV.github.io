@@ -12,57 +12,7 @@ tags: [서비스, Spring Data, MongoDB, 추상클래스, Converter]
 # Spring Data MongoDB 추상클래스 매핑 에러
 비즈니스 로직상 퀴즈의 유형은 이미지-주관식, 이미지-객관식, 오디오-주관식 등 여러가지가 있습니다. 퀴즈 도큐먼트 객체에 여러 유형의 문제를 매핑하기 위해서 문제를 표현하는 추상클래스를 두고 각 유형의 문제를 표현하는 구체클래스가 그를 상속하는 등 다형성을 최대한 활용하려고 노력했습니다.
 
-```mermaid
-  classDiagram
-    Question <|-- ImageMcqQuestion
-    Question <|-- ImageSubQuestion
-    Question <|-- AudioMcqQuestion
-    Question <|-- AudioSubQuestion
-    Question <|-- BinaryChoiceQuestion
-    ImageMcqQuestion --> TextMcqChoice
-    AudioMcqQuestion --> TextMcqChoice
-    BinaryChoiceQuestion --> BinaryChoiceItem
-
-    class Question {
-      <<abstract>>
-      -String questionId
-      -int tryCount
-      -int correctCount
-      +addTryCount()
-      +addCorrectCount()
-      +reflectQuizResult(QuestionResultRequest)*
-    }
-
-    class ImageMcqQuestion {
-      -String imageUrl
-      -List~TextMcqChoice~ choices
-      +reflectQuizResult(QuestionResultRequest)
-    }
-
-    class ImageSubQuestion {
-      -String imageUrl
-      -List~String~ answers
-      +reflectQuizResult(QuestionResultRequest)
-    }
-
-    class AudioMcqQuestion {
-      -String audioUrl
-      -List~TextMcqChoice~ choices
-      +reflectQuizResult(QuestionResultRequest)
-    }
-
-    class AudioSubQuestion {
-      -String audioUrl
-      -List~String~ answers
-      +reflectQuizResult(QuestionResultRequest)
-    }
-
-    class BinaryChoiceQuestion {
-      -BinaryChoiceItem first
-      -BinaryChoiceItem second
-      +reflectQuizResult(QuestionResultRequest)
-    }
-```
+![](https://private-user-images.githubusercontent.com/76734067/473815740-543c1494-433e-4412-ab65-04e93734c3a9.svg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTQyNTM3ODksIm5iZiI6MTc1NDI1MzQ4OSwicGF0aCI6Ii83NjczNDA2Ny80NzM4MTU3NDAtNTQzYzE0OTQtNDMzZS00NDEyLWFiNjUtMDRlOTM3MzRjM2E5LnN2Zz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA4MDMlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwODAzVDIwMzgwOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWQwYThlNjNiMTYwNmJiNmM4MDg0ZTNlOGFlZTQzYjZmYzY4ODA3NzczOWM4Mzk5MWFlZmI1ZTg1NDk4OWViNGImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.F0Eh4yVOAGiw0HDSVyUroFsV4Nagc7qDaIWeky9-8mQ)
 
 그러다보니 자연스럽게 Quiz 도큐먼트는 다음과 같은 타입의 리스트를 가지게 되었습니다.
 ```java
