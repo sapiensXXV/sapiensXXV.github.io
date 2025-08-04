@@ -20,14 +20,14 @@ title: >
 tagline: 평생 공부하고싶은 사람 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  여러가지 생각나는 대로 적습니다.
+  개발하면서 고민했던 과정들, 개인적으로 공부했던 것들 여러가지 적습니다.
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
-url: "https://mynameisjaehoon.github.io"
+url: "https://sapiensxxv.github.io"
 
 github:
-  username: mynameisjaehoon # change to your github username
+  username: sapiensxxv # change to your github username
 
 twitter:
   username: twitter_username # change to your twitter username
@@ -40,7 +40,7 @@ social:
   links:
     # The first element serves as the copyright owner's link
     # - https://twitter.com/username # change to your twitter homepage
-    - https://github.com/mynameisjaehoon # change to your github homepage
+    - https://github.com/sapiensxxv # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -89,7 +89,7 @@ theme_mode: # [light | dark]
 img_cdn: "https://chirpy-img.netlify.app"
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "/commons/avatar.jpg"
+avatar: "/assets/img/favicons/homo-sapiens.png"
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
